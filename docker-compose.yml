@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  dmall-product-service:
+      image: ec2-54-223-92-91.cn-north-1.compute.amazonaws.com.cn:5000/dmall/product-service:$BUILD_NUMBER
+      ports:
+          - "8083:8083"

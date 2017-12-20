@@ -1,4 +1,4 @@
-FROM java:8
+FROM java:8u111-jre-alpine
 VOLUME /tmp
 
 ADD build/libs/product-service-*.jar /work/app.jar
