@@ -49,7 +49,7 @@ dependencyManagement {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
+org.gradle.daemon=false
 
 
 task createWrapper(type: Wrapper) {
