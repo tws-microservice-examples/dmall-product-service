@@ -10,25 +10,16 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/products/")
 public class ProductController {
 
   public ProductController() throws ParseException {
 
   }
 
-  @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
-  public List<ProductForInventory> getAllProducsForInventory() {
-    List<ProductForInventory> productsForInventory = Arrays.asList(
-            new ProductForInventory("The Bible for eCommerce Product Managers", "Paperback"),
-            new ProductForInventory("Spring Microservices in Action", "Hardcover")
-    );
-    return productsForInventory;
-  }
-
-  @RequestMapping(value = "{sku}", method = RequestMethod.GET)
+  @RequestMapping(value = "inventory/{sku}", method = RequestMethod.GET)
   public ProductForInventory getProductBySku(@PathVariable("sku") String sku) {
-    return new ProductForInventory("The Bible for eCommerce Product Managers", "Paperback");
+    return new ProductForInventory("The Bible for eCommerce Product Managers" + sku, "Paperback");
   }
 
 }
