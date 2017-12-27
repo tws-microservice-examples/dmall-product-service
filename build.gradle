@@ -1,8 +1,8 @@
 buildscript {
 	project.ext {
-        bootVersion = '1.4.4.RELEASE'
-		cloudVersion = '1.1.0.RELEASE'
-		seurityVersion = '2.0.8.RELEASE'
+        bootVersion = '1.5.9.RELEASE'
+        cloudVersion = '1.1.0.RELEASE'
+        seurityVersion = '2.0.8.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -14,6 +14,7 @@ buildscript {
     }
 }
 
+apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'java'
@@ -21,7 +22,7 @@ apply plugin: 'io.spring.dependency-management'
 
 
 jar {
-    baseName = 'product-service'
+    baseName = 'order-service'
     version =  '0.0.1'
 }
 
@@ -30,11 +31,18 @@ repositories {
 	jcenter()
 }
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web:${project.bootVersion}")    
-    compile("org.springframework.boot:spring-boot-starter-actuator:${project.bootVersion}")
-	compile("org.springframework.cloud:spring-cloud-starter-config")
-	compile("org.springframework.cloud:spring-cloud-starter-eureka")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile("org.springframework.cloud:spring-cloud-starter-config")
+    compile("org.springframework.cloud:spring-cloud-starter-eureka")
     compile("org.springframework.cloud:spring-cloud-starter-hystrix")
+    compile("org.springframework.cloud:spring-cloud-starter-feign")
+
+    compile("org.flywaydb:flyway-core:4.1.1")
+    runtime('com.h2database:h2')
+    runtime('mysql:mysql-connector-java')
 
     testCompile group: 'junit', name: 'junit', version: '4.+'
     testCompile 'org.springframework:spring-test:4.0.6.RELEASE'
@@ -46,13 +54,11 @@ dependencyManagement {
     }
 }
 
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-org.gradle.daemon=false
 
 
 task createWrapper(type: Wrapper) {
-    gradleVersion = '2.0'
+    gradleVersion = '3.5.1'
 }
 

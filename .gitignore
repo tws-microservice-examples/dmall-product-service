@@ -1,9 +1,11 @@
 /build/
 /bin/
-.DS_Store
 /.idea/
-/classes/
+/.settings/
 /.gradle/
+/classes/
 .classpath
 .project
-.settings/
+*.ipr
+*.iml
+*.iws

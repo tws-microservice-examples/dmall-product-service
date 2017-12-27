@@ -1,44 +1,34 @@
 package com.dmall.product.apis;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
-import com.dmall.product.model.Product;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/")
 public class ProductController {
 
-	private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+  public ProductController() throws ParseException {
 
-	private List<Product> products = null;
+  }
 
-	public ProductController() throws ParseException {
-		this.products = Arrays.asList(
-				new Product("p001", "Iphone 6s", formatter.parse("2015-04-23")),
-				new Product("p002", "Xiaomi", formatter.parse("2015-05-12")),
-				new Product("p003", "Oppo R11", formatter.parse("2015-04-27")));
-	}
+  @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
+  public List<ProductForInventory> getAllProducsForInventory() {
+    List<ProductForInventory> productsForInventory = Arrays.asList(
+            new ProductForInventory("The Bible for eCommerce Product Managers", "Paperback"),
+            new ProductForInventory("Spring Microservices in Action", "Hardcover")
+    );
+    return productsForInventory;
+  }
 
-	@GetMapping
-	public List<Product> getCommentsByTaskId() {
+  @RequestMapping(value = "{sku}", method = RequestMethod.GET)
+  public ProductForInventory getProductBySku(@PathVariable("sku") String sku) {
+    return new ProductForInventory("The Bible for eCommerce Product Managers", "Paperback");
+  }
 
-		return products;
-	}
-
-	@RequestMapping(value = "/{productId}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public Product getProductbyId(@PathVariable("productId") final String productId) {
-		Optional<Product> product = products.stream().filter(c -> Objects.equals(c.getProdcutId(), productId)).findAny();
-
-		return product.isPresent() ? product.get() : null;
-	}
 }

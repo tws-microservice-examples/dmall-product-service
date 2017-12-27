@@ -3,7 +3,7 @@ node{
 
     stage('Checkout') {
         step([$class: 'WsCleanup'])
-        git url: 'git@gitee.com:tws-micro-service/dmall-product-service.git', branch: 'master'
+        git url: 'git@gitee.com:tws-micro-service/dmall-order-service.git', branch: 'master'
     }
 
     stage('Build') {
@@ -31,7 +31,6 @@ node{
     stage('Docker image') {
         sh './genImages.sh'
     }
-
 
     stage('Deploy to DEV') {
         sh './deployToDEV.sh'
