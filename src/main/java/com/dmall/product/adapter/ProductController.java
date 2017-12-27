@@ -1,5 +1,6 @@
 package com.dmall.product.adapter;
 
+import com.dmall.product.adapter.application.domain.ProductForInventory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

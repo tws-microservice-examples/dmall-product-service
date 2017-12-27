@@ -1,4 +1,4 @@
-package com.dmall.product.adapter;
+package com.dmall.product.adapter.application.domain;
 
 public class ProductForInventory {
     private final String name;
