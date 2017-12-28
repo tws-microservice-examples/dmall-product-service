@@ -9,24 +9,15 @@ import javax.persistence.Id;
 public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private  Long id;
+    private Long id;
     private String sku;
     private String title;
     private String spec;
     private String brand;
+    private String pic;
+    private Double price;
 
     public Product() {
-    }
-
-    public Product(String sku, String title, String spec, String brand) {
-        this.sku = sku;
-        this.title = title;
-        this.spec = spec;
-        this.brand = brand;
-    }
-
-    public ProductForInventory convertProductForInventory(Product product) {
-        return new ProductForInventory(product.getSku(), product.getTitle(), product.getSpec());
     }
 
     public Long getId() {
@@ -37,19 +28,59 @@ public class Product {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
     private String getSku() {
         return this.sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     private String getTitle() {
         return this.title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getSpec() {
         return this.spec;
+    }
+
+    public void setSpec(String spec) {
+        this.spec = spec;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getPic() {
+        return this.pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
+    public Double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public ProductForInventory convertProductForInventory(Product product) {
+        return new ProductForInventory(product.getSku(), product.getTitle(), product.getSpec());
+    }
+
+    public ProductForOrder convertProductForOrder(Product product) {
+        return new ProductForOrder(product.getSku(), product.getTitle(), product.getPic(), product.getPrice());
     }
 }
