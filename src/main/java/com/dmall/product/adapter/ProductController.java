@@ -1,5 +1,7 @@
 package com.dmall.product.adapter;
 
+import com.dmall.product.adapter.application.ProductApp;
+import com.dmall.product.adapter.application.domain.Product;
 import com.dmall.product.adapter.application.domain.ProductForInventory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,12 @@ public class ProductController {
   }
 
   @RequestMapping(value = "inventory/{sku}", method = RequestMethod.GET)
-  public ProductForInventory getProductBySku(@PathVariable("sku") String sku) {
-    return new ProductForInventory("The Bible for eCommerce Product Managers", "Paperback");
+  public ProductForInventory getProductForInventoryBySku(@PathVariable("sku") String sku) {
+    ProductRepo repo = new ProductRepo();
+    Product product = repo.getProductBySku(sku);
+
+    ProductApp app = new ProductApp();
+    return app.convertProductForInventory(product);
   }
 
 }
