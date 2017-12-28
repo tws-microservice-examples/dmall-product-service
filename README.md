@@ -1,10 +1,10 @@
-#Simle API Test After Lunch
+#Simle API Test
 
 1.Start API Server
 > ./gradlew bootRun
 
-2.Call Post API
-> http://localhost:8084/api/orders/
+2.Get a product for inventory service
+> http://localhost:8084/products/inventory/111
 
 With example Data
 
@@ -12,22 +12,11 @@ With example Data
 {
 	"data":{
 		"attributes": {
-			"name" : "Buy a Iphone",
-			"province" : "Sichuang",
-    		"city" : "Chengdu",
-    		"area" : "JinNiu",
-    		"street" : "Jiulidi",
-    		"moreDetails" : "no",
-    		 "price" : 8777,
-    		 "amount" : 1,
-    		"description" : "no more",
-    		"brand" : "IPONE X",
-    		"petId" : "001a"
+            "sku": "6009901",
+            "title": "Apple - iPhone X 64GB - Space Gray (Verizon)",
+            "spec": "64GB - Space Gray (Verizon)"
 		}	
 	}
 	
 }
 ```
-
-3.Get Created Resource with API
-> http://localhost:8084/api/orders/1
