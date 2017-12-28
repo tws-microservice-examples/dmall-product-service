@@ -6,3 +6,4 @@ CREATE TABLE `product` (
   `brand`     VARCHAR(20)  NOT NULL,
   `created_date` TIMESTAMP
 );
+INSERT INTO product (id,sku, title, spec, brand, created_date) VALUES(1,'111', 'iphone 6s', 'black', 'apple', NULL );
