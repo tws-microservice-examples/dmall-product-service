@@ -3,6 +3,7 @@ package com.dmall.product.adapter;
 import com.dmall.product.adapter.application.ProductApp;
 import com.dmall.product.adapter.application.domain.Product;
 import com.dmall.product.adapter.application.domain.ProductForInventory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,17 +15,21 @@ import java.text.ParseException;
 @RequestMapping("/products/")
 public class ProductController {
 
+  @Autowired
+  ProductRepository productRepository;
+
+  @Autowired
+  ProductApp productApp;
+
   public ProductController() throws ParseException {
 
   }
 
   @RequestMapping(value = "inventory/{sku}", method = RequestMethod.GET)
   public ProductForInventory getProductForInventoryBySku(@PathVariable("sku") String sku) {
-    ProductRepo repo = new ProductRepo();
-    Product product = repo.getProductBySku(sku);
+    Product product = productRepository.findBySku(sku);
 
-    ProductApp app = new ProductApp();
-    return app.convertProductForInventory(product);
+    return productApp.convertProductForInventory(product);
   }
 
 }
