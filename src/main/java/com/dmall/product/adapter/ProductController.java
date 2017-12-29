@@ -5,15 +5,13 @@ import com.dmall.product.adapter.application.domain.Product;
 import com.dmall.product.adapter.application.domain.ProductForInventory;
 import com.dmall.product.adapter.application.domain.ProductForOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
 @RestController
-@RequestMapping("/products/")
+@RequestMapping("/products")
 public class ProductController {
 
   @Autowired
@@ -26,18 +24,25 @@ public class ProductController {
 
   }
 
-  @RequestMapping(value = "inventory/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
+  @RequestMapping(value = "/inventory/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
   public ProductForInventory getProductForInventoryBySku(@PathVariable("sku") String sku) {
     Product product = productRepository.findBySku(sku);
 
     return productApp.convertProductForInventory(product);
   }
 
-  @RequestMapping(value = "order/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
+  @RequestMapping(value = "/order/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
   public ProductForOrder getProductForOrderBySku(@PathVariable("sku") String sku) {
     Product product = productRepository.findBySku(sku);
 
     return productApp.convertProductForOrder(product);
+  }
+
+  @RequestMapping(value = "", method = RequestMethod.POST, headers = "Accept=application/json")
+  @ResponseStatus(HttpStatus.CREATED)
+  public Product createProduct(@RequestBody Product product) {
+    Product savedProduct = productRepository.save(product);
+    return savedProduct;
   }
 
 }
