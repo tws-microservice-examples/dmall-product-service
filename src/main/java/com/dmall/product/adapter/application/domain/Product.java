@@ -76,11 +76,7 @@ public class Product {
         this.price = price;
     }
 
-    public ProductForInventory convertProductForInventory(Product product) {
-        return new ProductForInventory(product.getSku(), product.getTitle(), product.getSpec());
-    }
-
-    public ProductForOrder convertProductForOrder(Product product) {
-        return new ProductForOrder(product.getSku(), product.getTitle(), product.getPic(), product.getPrice());
+    public ProductForClient convertProductForClient(Product product) {
+        return new ProductForClient(product.getSku(), product.getTitle(), product.getSpec(), product.getBrand(), product.getPic(), product.getPrice());
     }
 }

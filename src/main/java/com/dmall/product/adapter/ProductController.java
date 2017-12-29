@@ -2,8 +2,7 @@ package com.dmall.product.adapter;
 
 import com.dmall.product.adapter.application.ProductApp;
 import com.dmall.product.adapter.application.domain.Product;
-import com.dmall.product.adapter.application.domain.ProductForInventory;
-import com.dmall.product.adapter.application.domain.ProductForOrder;
+import com.dmall.product.adapter.application.domain.ProductForClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,18 +23,11 @@ public class ProductController {
 
   }
 
-  @RequestMapping(value = "/inventory/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
-  public ProductForInventory getProductForInventoryBySku(@PathVariable("sku") String sku) {
+  @RequestMapping(value = "/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
+  public ProductForClient getProductBySku(@PathVariable("sku") String sku) {
     Product product = productRepository.findBySku(sku);
 
-    return productApp.convertProductForInventory(product);
-  }
-
-  @RequestMapping(value = "/order/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
-  public ProductForOrder getProductForOrderBySku(@PathVariable("sku") String sku) {
-    Product product = productRepository.findBySku(sku);
-
-    return productApp.convertProductForOrder(product);
+    return productApp.convertProductForClients(product);
   }
 
   @RequestMapping(value = "", method = RequestMethod.POST, headers = "Accept=application/json")
