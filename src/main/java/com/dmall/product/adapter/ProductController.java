@@ -26,14 +26,14 @@ public class ProductController {
 
   }
 
-  @RequestMapping(value = "inventory/{sku}", method = RequestMethod.GET)
+  @RequestMapping(value = "inventory/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
   public ProductForInventory getProductForInventoryBySku(@PathVariable("sku") String sku) {
     Product product = productRepository.findBySku(sku);
 
     return productApp.convertProductForInventory(product);
   }
 
-  @RequestMapping(value = "order/{sku}", method = RequestMethod.GET)
+  @RequestMapping(value = "order/{sku}", method = RequestMethod.GET, headers = "Accept=application/json")
   public ProductForOrder getProductForOrderBySku(@PathVariable("sku") String sku) {
     Product product = productRepository.findBySku(sku);
 
