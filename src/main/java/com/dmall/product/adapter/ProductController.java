@@ -26,8 +26,9 @@ public class ProductController {
 
   }
 
-  @RequestMapping(value = "", method = RequestMethod.GET, headers = "Accept=application/json")
+  @RequestMapping(value = "", method = RequestMethod.GET)
   public List<ProductForClient> findBySkus(@RequestParam("skus") String[] skus) {
+    System.out.println(skus);
     List<Product> products = productRepository.findBySkuIn(Arrays.asList(skus));
 
     List<ProductForClient> result = products.stream()
