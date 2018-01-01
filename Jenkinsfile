@@ -1,6 +1,4 @@
 pipeline{
-    step([$class: 'WsCleanup'])
-
     agent any
 
     triggers {
