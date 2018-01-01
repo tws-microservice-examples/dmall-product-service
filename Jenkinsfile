@@ -20,33 +20,52 @@ pipeline {
         }
 
         stage('Build') {
-            sh './gradlew clean build'
+            steps{
+                sh './gradlew clean build'
+            }
         }
 
         stage('Check') {
-            parallel (
-                "Findbugs" : {
-                    echo 'Findbugs is finished.'
-                },
-                "Checkstyle" : {
-                    echo 'Checkstyle is finished.'
-                },
-                "PMD" : {
-                    echo 'PMD is finished.'
-                }
-            )
+            parallel {
+                stage('Findbugs') {
+                        agent none
+                        steps {
+                            echo 'Findbugs is finished.'
+                        }
+                    }
+                stage('Checkstyle') {
+                        agent none
+                        steps {
+                            echo 'Checkstyle is finished.'
+                        }
+                    }
+                stage('PMD') {
+                        agent none
+                        steps {
+                            echo 'PMD is finished.'
+                        }
+                    }
+            }
         }
 
         stage('Test') {
-            sh './gradlew test'
+            steps{
+                sh './gradlew test'
+            }
         }
 
-        stage('Docker image') {
-            sh './genImages.sh'
+        stage('GenDockerImage') {
+            steps{
+                sh './genImages.sh'
+            }
         }
 
-        stage('Deploy to DEV') {
-            sh './deployToDEV.sh'
+        stage('DeployToDEV') {
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'dev_rencher_api_key', passwordVariable: 'SECRET', usernameVariable: 'KEY')]) {
+                    sh './deployToDEV.sh'
+                }
+            }
         }
 
         stage('PublishStubs'){
