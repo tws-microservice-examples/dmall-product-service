@@ -7,7 +7,7 @@ import org.springframework.cloud.contract.spec.Contract
             name('should return product')
             request {
                 method GET()
-                url ('products') {
+                url ('/products') {
                     queryParameters {
                         parameter('skus', '6009907')
                         parameter('skus', '6009901')
