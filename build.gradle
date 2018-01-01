@@ -22,9 +22,8 @@ apply plugin: 'spring-cloud-contract'
 apply plugin: 'maven-publish'
 apply plugin: 'io.spring.dependency-management'
 
-
 jar {
-    baseName = 'order-service'
+    baseName = 'product-service'
     version =  '0.0.1'
 }
 
@@ -49,7 +48,6 @@ dependencies {
     compile("org.springframework.cloud:spring-cloud-starter-feign")
     compile 'com.github.jmnarloch:modelmapper-spring-boot-starter:1.0.1'
 
-    compile group: 'commons-io', name: 'commons-io', version: '2.5'
     compile("org.flywaydb:flyway-core:4.1.1")
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')

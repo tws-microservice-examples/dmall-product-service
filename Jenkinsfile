@@ -3,7 +3,7 @@ node{
 
     stage('Checkout') {
         step([$class: 'WsCleanup'])
-        git url: 'git@gitee.com:tws-micro-service/dmall-order-service.git', branch: 'master'
+        git url: 'git@gitee.com:tws-micro-service/dmall-product-service.git', branch: 'release'
     }
 
     stage('Build') {
@@ -25,7 +25,7 @@ node{
     }
 
     stage('Test') {
-       sh './gradlew test'
+        sh './gradlew test'
     }
 
     stage('Docker image') {
@@ -34,5 +34,17 @@ node{
 
     stage('Deploy to DEV') {
         sh './deployToDEV.sh'
+    }
+
+    stage('PublishStubs'){
+        steps {
+            sh './gradlew :publishStubsPublicationToMavenRepository'
+        }
+    }
+
+    stage('TrigerStubServer'){
+        steps {
+            build 'dmall-product-stub-service'
+        }
     }
 }
