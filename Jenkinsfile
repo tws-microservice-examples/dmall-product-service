@@ -12,8 +12,11 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            step([$class: 'WsCleanup'])
-            git credentialsId: 'git-viewer', url: 'git@gitee.com:tws-micro-service/dmall-product-service.git', branch: 'release'
+            steps {
+                step([$class: 'WsCleanup'])
+                            git credentialsId: 'git-viewer', url: 'git@gitee.com:tws-micro-service/dmall-product-service.git', branch: 'release'
+            }
+
         }
 
         stage('Build') {
