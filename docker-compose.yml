@@ -3,7 +3,7 @@ version: '2'
 services:
   dmall-proeuct-service:
     environment:
-      - ACTIVE_PROFILE=dev
+      - SPRING_PROFILES_ACTIVE=dev
     image: ec2-54-223-92-91.cn-north-1.compute.amazonaws.com.cn:5000/dmall/product-service:$BUILD_NUMBER
     ports:
       - "8084:8084"
