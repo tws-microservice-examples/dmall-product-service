@@ -1,4 +1,4 @@
-node{
+pipeline{
     step([$class: 'WsCleanup'])
 
     agent any
