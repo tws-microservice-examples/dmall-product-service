@@ -76,13 +76,11 @@ task createWrapper(type: Wrapper) {
 }
 
 contracts {
-    packageWithBaseClasses = 'com.dmall.product'
+    packageWithBaseClasses = 'com.dmall'
 }
 
 group = 'com.dmall'
 version = '0.0.1-SNAPSHOT'
-
-
 
 publishing {
     repositories {
