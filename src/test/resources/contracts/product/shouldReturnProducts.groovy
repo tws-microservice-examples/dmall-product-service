@@ -17,6 +17,7 @@ import org.springframework.cloud.contract.spec.Contract
             }
             response {
                 status(200)
+                header('''Content-Type''', '''application/json;charset=UTF-8''')
                 body """
                     [
                         {
@@ -52,6 +53,7 @@ import org.springframework.cloud.contract.spec.Contract
             }
             response {
                 status(200)
+                header('''Content-Type''', '''application/json;charset=UTF-8''')
                 body """
                     [
                         {
