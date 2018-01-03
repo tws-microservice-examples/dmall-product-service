@@ -16,7 +16,3 @@ spring:
     console:
       enabled: true
 logging.level.project.user.UserClient: DEBUG
-
-eureka:
-  client:
-    enabled: false
