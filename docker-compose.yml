@@ -4,6 +4,9 @@ services:
   dmall-product-service:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
-    image: ec2-52-80-144-157.cn-north-1.compute.amazonaws.com.cn:5000/dmall/product-service:$BUILD_NUMBER
+    image: ${DMALL_DOCKER_REGISTRY}/${GROUP_PATH}/product-service:$BUILD_NUMBER
     ports:
       - "8084:8084"
+    external_links:
+      - dmall-config-server/dmall-config-server:dmall-config-server
+      - dmall-registry-server/dmall-registry-server:dmall-registry-server
