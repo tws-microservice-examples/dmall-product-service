@@ -6,7 +6,7 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
     image: ${DMALL_DOCKER_REGISTRY}/${GROUP_PATH}/product-service:$BUILD_NUMBER
     ports:
-      - "8084:8084"
+      - "8083:8083"
     external_links:
       - dmall-config-server/dmall-config-server:dmall-config-server
       - dmall-registry-server/dmall-registry-server:dmall-registry-server
