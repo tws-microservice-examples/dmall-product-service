@@ -1,7 +1,6 @@
 spring:
   application:
     name: product-service
-
 ---    
 spring:
   profiles: dev,production
