@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import com.dmall.product.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +41,23 @@ public class ProductController {
 	public Product getProductbyId(@PathVariable("productId") final String productId) {
 		Optional<Product> product = products.stream().filter(c -> Objects.equals(c.getProdcutId(), productId)).findAny();
 
-		return product.isPresent() ? product.get() : null;
+		 Product p = product.isPresent() ? product.get() : null;
+		 p.setName(p.getName()+ "-" + getHostIP());
+		 return p;
+	}
+
+	public String getHostIP() {
+		InetAddress ip;
+		try {
+  
+		  ip = InetAddress.getLocalHost();
+		  return ip.getHostAddress();
+  
+		} catch (UnknownHostException e) {
+  
+		  return "Ip Empty";
+  
+		}
+  
 	}
 }
