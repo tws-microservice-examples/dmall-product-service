@@ -1,2 +1,3 @@
 #!/bin/sh
-java -jar /work/app.jar
+PROFILE=${ACTIVE_PROFILE:=default}
+java -jar /work/app.jar --spring.profiles.active=$PROFILE 

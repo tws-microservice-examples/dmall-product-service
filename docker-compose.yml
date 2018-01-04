@@ -3,6 +3,8 @@ version: '2'
 services:
   dmall-product-service:
       image: '${DMALL_DOCKER_REGISTRY}/dmall/product-service:${BUILD_NUMBER}'
+      environment:
+        ACTIVE_PROFILE: dev
       ports:
           - "8083:8083"
       external_links:
