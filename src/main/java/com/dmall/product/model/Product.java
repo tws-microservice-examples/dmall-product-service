@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class Product {
 
-	private String prodcutId;
+	private String productId;
 
 	private String name;
 
@@ -22,19 +22,19 @@ public class Product {
 
 	}
 
-	public Product(String prodcutId, String name, Date posted) {
+	public Product(String productId, String name, Date posted) {
 		super();
-		this.prodcutId = prodcutId;
+		this.productId = productId;
 		this.name = name;
 		this.posted = posted;
 	}
 
-	public String getProdcutId() {
-		return prodcutId;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setProdcutId(String prodcutId) {
-		this.prodcutId = prodcutId;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public String getName() {
